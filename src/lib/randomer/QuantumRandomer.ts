@@ -9,7 +9,9 @@ export class QuantumRandomer implements IRandomer {
 
   async initialize(): Promise<void> {
     const response = await fetch(
-      `${QuantumRandomer.API_URL}?length=${this.length}&type=uint8`,
+      `${QuantumRandomer.API_URL}?length=${
+        this.length
+      }&type=uint8&rand=${Math.random()}`,
     );
     const data = await response.json();
     this.values = data.data as number[];

@@ -1,5 +1,10 @@
 import { Trigram } from '../trigram/Trigram';
-import { TrigramElement, TrigramIndex, TrigramNumber } from '../trigram/type';
+import {
+  TrigramElement,
+  TrigramFullName,
+  TrigramIndex,
+  TrigramNumber,
+} from '../trigram/type';
 import { HexagramNumber, HexagramType } from './type';
 import card1 from '../../assets/iching-cards/1.jpg';
 import card2 from '../../assets/iching-cards/2.jpg';
@@ -122,6 +127,32 @@ export class Hexagram {
     return Trigram.fromCode((this.rowIndex + 1) as TrigramNumber);
   }
 
+  public get fullname():
+    | `${TrigramElement}${TrigramElement}${HexagramType}`
+    | TrigramFullName {
+    if (this.firstTrigram.element === this.lastTrigram.element) {
+      return this.firstTrigram.fullname;
+    }
+
+    return `${this.firstTrigram.element}${this.lastTrigram.element}${this.value}`;
+  }
+
+  public get code(): HexagramNumber {
+    return Hexagram.codes[this.rowIndex][this.columnIndex] as HexagramNumber;
+  }
+
+  public get cardImage(): string {
+    return Hexagram.images[this.rowIndex][this.columnIndex];
+  }
+
+  public toString(): HexagramType {
+    return this.value;
+  }
+
+  public static elementOf(first: TrigramElement, last: TrigramElement) {
+    return Hexagram.valueOf(Trigram.elementOf(first), Trigram.elementOf(last));
+  }
+
   public static fromCode(code: HexagramNumber): Hexagram {
     const rowIndex = Hexagram.codes.findIndex((codes) =>
       codes.includes(code),
@@ -134,25 +165,9 @@ export class Hexagram {
     return new Hexagram(Hexagram.dictionary[rowIndex][colIndex]);
   }
 
-  public get code(): HexagramNumber {
-    return Hexagram.codes[this.rowIndex][this.columnIndex] as HexagramNumber;
-  }
-
-  public get cardImage(): string {
-    return Hexagram.images[this.rowIndex][this.columnIndex];
-  }
-
-  public static elementOf(first: TrigramElement, last: TrigramElement) {
-    return Hexagram.valueOf(Trigram.elementOf(first), Trigram.elementOf(last));
-  }
-
   public static valueOf(first: Trigram, last: Trigram) {
     const firstIndex = first.code - 1;
     const lastIndex = last.code - 1;
     return new Hexagram(Hexagram.dictionary[lastIndex][firstIndex]);
-  }
-
-  public toString(): HexagramType {
-    return this.value;
   }
 }

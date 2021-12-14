@@ -1,14 +1,15 @@
 import React from 'react';
 import { Flex, Text } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
+import { useGameboardStore } from '../../hooks/useGameboardStore';
 
 const AnimatedFlex = motion(Flex);
 
-interface Props {
-  label: '上卦' | '下卦';
-}
+export const Title = React.memo(() => {
+  const selectedFirstTrigram = useGameboardStore(
+    (state) => state.selectedFirstTrigram,
+  );
 
-export const Title = React.memo(({ label }: Props) => {
   return (
     <AnimatedFlex
       initial={{ transform: `translateY(-20px)`, opacity: 0 }}
@@ -21,7 +22,7 @@ export const Title = React.memo(({ label }: Props) => {
         <br />
         隨鳩點擊太極抽出
         <Text as="span" fontWeight="bold" color="orange.300">
-          {label}
+          {selectedFirstTrigram ? '下卦' : '上卦'}
         </Text>
       </Text>
     </AnimatedFlex>

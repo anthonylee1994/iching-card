@@ -3,16 +3,16 @@ import { Grid } from '@chakra-ui/react';
 import { YinYang } from './YinYang';
 import { CenterLogo } from './CenterLogo';
 import { motion } from 'framer-motion';
-import { Trigram } from '../trigram/Trigram';
+import { useGameboardStore } from '../../hooks/useGameboardStore';
 
 const AnimatedGrid = motion(Grid);
 
-interface Props {
-  trigrams: Trigram[];
-  onClick: (trigram: Trigram) => void;
-}
+export const DrawBoard = React.memo(() => {
+  const currentTrigrams = useGameboardStore((state) =>
+    state.getCurrentTrigrams(),
+  );
+  const onDraw = useGameboardStore((state) => state.onDraw);
 
-export const DrawBoard = React.memo(({ trigrams, onClick }: Props) => {
   return (
     <AnimatedGrid
       initial={{ scale: 0, opacity: 0, rotate: -180 }}
@@ -24,12 +24,12 @@ export const DrawBoard = React.memo(({ trigrams, onClick }: Props) => {
         duration: 0.8,
       }}
     >
-      {trigrams.slice(0, 4).map((trigram, index) => (
-        <YinYang key={index} onClick={() => onClick(trigram)} />
+      {currentTrigrams.slice(0, 4).map((trigram, index) => (
+        <YinYang key={index} onClick={() => onDraw(trigram)} />
       ))}
       <CenterLogo />
-      {trigrams.slice(4, 8).map((trigram, index) => (
-        <YinYang key={index} onClick={() => onClick(trigram)} />
+      {currentTrigrams.slice(4, 8).map((trigram, index) => (
+        <YinYang key={index} onClick={() => onDraw(trigram)} />
       ))}
     </AnimatedGrid>
   );
