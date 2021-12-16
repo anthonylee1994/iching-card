@@ -70,6 +70,7 @@ import card61 from '../../assets/iching-cards/61.jpg';
 import card62 from '../../assets/iching-cards/62.jpg';
 import card63 from '../../assets/iching-cards/63.jpg';
 import card64 from '../../assets/iching-cards/64.jpg';
+import { hexagramMessagesMap } from './hexagramMessages';
 
 export class Hexagram {
   constructor(public readonly value: HexagramType) {}
@@ -107,7 +108,9 @@ export class Hexagram {
     [12, 45, 35, 16, 20, 8, 23, 2],
   ];
 
-  public static messages: HexagramMessageMap[] = [];
+  public get message(): HexagramMessageMap | null {
+    return hexagramMessagesMap[this.value];
+  }
 
   public get rowIndex(): TrigramIndex {
     return Hexagram.dictionary.findIndex((types) =>
@@ -153,6 +156,10 @@ export class Hexagram {
 
   public static elementOf(first: TrigramElement, last: TrigramElement) {
     return Hexagram.valueOf(Trigram.elementOf(first), Trigram.elementOf(last));
+  }
+
+  public static fromValue(value: HexagramType): Hexagram {
+    return new Hexagram(value);
   }
 
   public static fromCode(code: HexagramNumber): Hexagram {

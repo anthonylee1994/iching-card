@@ -1,5 +1,6 @@
 import { Flex, Text } from '@chakra-ui/react';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useGameboardStore } from '../../hooks/useGameboardStore';
 import { useModalStore } from '../../hooks/useModalStore';
 import { ActionButton } from './ActionButton';
@@ -8,6 +9,7 @@ import { IChingCardModal } from './IChingCardModal';
 
 export const DrawResult = React.memo(() => {
   const containerRef = React.useRef(null);
+  const navigate = useNavigate();
 
   const drawedHexagram = useGameboardStore((state) =>
     state.getDrawedHexagram(),
@@ -18,6 +20,14 @@ export const DrawResult = React.memo(() => {
   );
 
   const retry = useGameboardStore((state) => state.retry);
+
+  const goToExplainPage = React.useCallback(() => {
+    if (!drawedHexagram) {
+      return;
+    }
+
+    navigate(`/${drawedHexagram.value}`);
+  }, [navigate, drawedHexagram]);
 
   if (!drawedHexagram) {
     return null;
@@ -36,7 +46,7 @@ export const DrawResult = React.memo(() => {
       <Text mt={2} fontWeight="bold" fontSize="3xl" color="orange.300">
         {drawedHexagram.fullname}
       </Text>
-      <ActionButton mt={2} width="full">
+      <ActionButton mt={2} width="full" onClick={goToExplainPage}>
         解卦
       </ActionButton>
       <ActionButton onClick={retry} mt={4} mb={14} width="full">

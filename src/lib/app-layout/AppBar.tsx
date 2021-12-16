@@ -7,10 +7,12 @@ export const AppBar = React.memo(() => {
     <Flex
       justifyContent="center"
       alignItems="center"
-      height="72px"
+      height="64px"
       position="fixed"
       width="full"
       fontSize="3xl"
+      backdropFilter="blur(4px)"
+      bgColor="rgb(26 32 44 / 60%)"
     >
       <Icon mr={2} as={GiEgyptianBird} />
       <Text fontWeight="bold">鳩卜</Text>

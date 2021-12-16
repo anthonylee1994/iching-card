@@ -29,6 +29,7 @@ export const IChingCardModal = React.memo(
       >
         <ModalOverlay />
         <AnimatedContent
+          boxShadow="none"
           bgColor="transparent"
           padding={4}
           initial={{ scale: 0, rotateY: -360, filter: 'blur(4px)' }}
