@@ -17,6 +17,7 @@ export const IChingCard = React.memo(({ hexagram, onClick }: Props) => {
       cursor={onClick ? 'pointer' : undefined}
       initial={{ opacity: 0, rotate: -90, scale: 0 }}
       animate={{ opacity: 1, rotate: 0, scale: 1 }}
+      whileTap={{ scale: 0.8 }}
     >
       <Image src={hexagram.cardImage} height={300} borderRadius="md" />
     </AnimatedFlex>

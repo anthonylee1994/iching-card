@@ -5,7 +5,7 @@ import {
   TrigramIndex,
   TrigramNumber,
 } from '../trigram/type';
-import { HexagramNumber, HexagramType } from './type';
+import { HexagramMessageMap, HexagramNumber, HexagramType } from './type';
 import card1 from '../../assets/iching-cards/1.jpg';
 import card2 from '../../assets/iching-cards/2.jpg';
 import card3 from '../../assets/iching-cards/3.jpg';
@@ -78,8 +78,8 @@ export class Hexagram {
     ['乾', '夬', '大有', '大壯', '小畜', '需', '大畜', '泰'],
     ['履', '兌', '睽', '歸妹', '中孚', '節', '損', '臨'],
     ['同人', '革', '離', '豐', '家人', '既濟', '賁', '明夷'],
-    ['无妄', '隨', '噬嗑', '震', '益', '屯', '頤', '復'],
-    ['姤', '大過', '鼎', '恒', '巽', '井', '蠱', '升'],
+    ['無妄', '隨', '噬嗑', '震', '益', '屯', '頤', '復'],
+    ['姤', '大過', '鼎', '恆', '巽', '井', '蠱', '升'],
     ['訟', '困', '未濟', '解', '渙', '坎', '蒙', '師'],
     ['遯', '咸', '旅', '小過', '漸', '蹇', '艮', '謙'],
     ['否', '萃', '晉', '豫', '觀', '比', '剝', '坤'],
@@ -106,6 +106,8 @@ export class Hexagram {
     [33, 31, 56, 62, 53, 39, 52, 15],
     [12, 45, 35, 16, 20, 8, 23, 2],
   ];
+
+  public static messages: HexagramMessageMap[] = [];
 
   public get rowIndex(): TrigramIndex {
     return Hexagram.dictionary.findIndex((types) =>

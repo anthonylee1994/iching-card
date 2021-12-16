@@ -34,12 +34,13 @@ export const IChingCardModal = React.memo(
           initial={{ scale: 0, rotateY: -360, filter: 'blur(4px)' }}
           animate={{ scale: 1, rotateY: 0, filter: 'blur(0px)' }}
           transition={{ duration: 0.5 }}
+          whileTap={{ scale: 0.9 }}
         >
           <Image
             width="full"
+            borderRadius="md"
             onClick={onClose}
             src={hexagram.cardImage}
-            borderRadius="md"
           />
         </AnimatedContent>
       </Modal>

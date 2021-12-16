@@ -23,7 +23,7 @@ export type HexagramType =
   | '既濟'
   | '賁'
   | '明夷'
-  | '无妄'
+  | '無妄'
   | '隨'
   | '噬嗑'
   | '震'
@@ -34,7 +34,7 @@ export type HexagramType =
   | '姤'
   | '大過'
   | '鼎'
-  | '恒'
+  | '恆'
   | '巽'
   | '井'
   | '蠱'
@@ -129,3 +129,25 @@ export type HexagramNumber =
   | 62
   | 63
   | 64;
+
+export type HexagramMessageMap = {
+  主要: string;
+  特性?: string;
+  解釋: string;
+  運勢?: string;
+  愛情?: string;
+  家運?: string;
+  胎孕?: string;
+  子女?: string;
+  週轉?: string;
+  買賣?: string;
+  疾病?: string;
+  等人?: string;
+  尋人?: string;
+  失物?: string;
+  旅行?: string;
+  訟詞糾紛?: string;
+  求事求職?: string;
+  考試?: string;
+  改行?: string;
+};
