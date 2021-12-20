@@ -8,6 +8,7 @@ const AnimatedFlex = motion(Flex);
 export const YinYang = React.memo((props: FlexProps) => {
   return (
     <AnimatedFlex
+      cursor="pointer"
       justifyContent="center"
       alignItems="center"
       whileTap={{ scale: 2, opacity: 0.5 }}

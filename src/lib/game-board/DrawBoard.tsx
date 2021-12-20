@@ -3,7 +3,7 @@ import { Grid } from '@chakra-ui/react';
 import { YinYang } from './YinYang';
 import { CenterLogo } from './CenterLogo';
 import { motion } from 'framer-motion';
-import { useGameboardStore } from '../../hooks/useGameboardStore';
+import { useGameboardStore } from './hooks/useGameboardStore';
 
 const AnimatedGrid = motion(Grid);
 

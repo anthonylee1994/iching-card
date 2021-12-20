@@ -1,12 +1,13 @@
 import create from 'zustand';
-import { Hexagram } from '../lib/hexagram/Hexagram';
-import { Trigram } from '../lib/trigram/Trigram';
+import { Hexagram } from '../../hexagram/Hexagram';
+import { Trigram } from '../../trigram/Trigram';
 
 interface IState {
   firstTrigrams: Trigram[];
   lastTrigrams: Trigram[];
   selectedFirstTrigram: Trigram | null;
   selectedLastTrigram: Trigram | null;
+  isCardSaved: boolean;
   isCardVisible: boolean;
   getDrawedHexagram: () => Hexagram | null;
   getCurrentTrigrams: () => Trigram[];
@@ -20,6 +21,7 @@ interface IState {
   selectFirstTrigram: (trigram: Trigram | null) => void;
   selectLastTrigram: (trigram: Trigram | null) => void;
   setCardVisible: (isCardVisible: boolean) => void;
+  setCardSaved: (isCardSaved: boolean) => void;
   showCard: () => void;
   hideCard: () => void;
 }
@@ -30,6 +32,7 @@ export const useGameboardStore = create<IState>((set, get) => ({
   selectedFirstTrigram: null,
   selectedLastTrigram: null,
   isCardVisible: false,
+  isCardSaved: false,
   getDrawedHexagram: () => {
     const { isCardVisible, selectedFirstTrigram, selectedLastTrigram } = get();
 
@@ -71,9 +74,15 @@ export const useGameboardStore = create<IState>((set, get) => ({
     }
   },
   retry: () => {
-    const { selectFirstTrigram, selectLastTrigram, setCardVisible, shuffle } =
-      get();
+    const {
+      selectFirstTrigram,
+      selectLastTrigram,
+      setCardVisible,
+      setCardSaved,
+      shuffle,
+    } = get();
     setCardVisible(false);
+    setCardSaved(false);
     selectFirstTrigram(null);
     selectLastTrigram(null);
     shuffle();
@@ -106,6 +115,12 @@ export const useGameboardStore = create<IState>((set, get) => ({
     set((state) => ({
       ...state,
       isCardVisible,
+    }));
+  },
+  setCardSaved: (isCardSaved: boolean) => {
+    set((state) => ({
+      ...state,
+      isCardSaved,
     }));
   },
   showCard: () => {

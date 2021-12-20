@@ -4,7 +4,7 @@ import { Word } from './Word';
 
 export const CenterLogo = React.memo(() => {
   return (
-    <Grid templateColumns="repeat(2, 1fr)">
+    <Grid userSelect="none" templateColumns="repeat(2, 1fr)">
       <Word>則</Word>
       <Word>心</Word>
       <Word>靈</Word>

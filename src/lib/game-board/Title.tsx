@@ -1,7 +1,7 @@
 import React from 'react';
 import { Flex, Text } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-import { useGameboardStore } from '../../hooks/useGameboardStore';
+import { useGameboardStore } from './hooks/useGameboardStore';
 
 const AnimatedFlex = motion(Flex);
 
@@ -12,12 +12,17 @@ export const Title = React.memo(() => {
 
   return (
     <AnimatedFlex
+      userSelect="none"
       initial={{ transform: `translateY(-20px)`, opacity: 0 }}
       animate={{ transform: `translateY(0px)`, opacity: 1 }}
       exit={{ transform: `translateY(20px)`, opacity: 0 }}
       justifyContent="center"
     >
-      <Text lineHeight={2} fontSize="xl" mb={8}>
+      <Text
+        lineHeight={2}
+        fontSize={{ base: 'xl', sm: '2xl', lg: '3xl' }}
+        mb={8}
+      >
         而家開始默念您嘅問題
         <br />
         隨鳩點擊太極抽出

@@ -6,7 +6,7 @@ import { Title } from './Title';
 import { TrigramDisplay } from './TrigramDisplay';
 import { AnimatePresence } from 'framer-motion';
 import { DrawResult } from './DrawResult';
-import { useGameboardStore } from '../../hooks/useGameboardStore';
+import { useGameboardStore } from './hooks/useGameboardStore';
 
 export const GameBoard = React.memo(() => {
   const isLoading = useGameboardStore((state) => state.isLoading());

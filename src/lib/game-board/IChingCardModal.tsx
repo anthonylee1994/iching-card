@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal, ModalContent, ModalOverlay } from '@chakra-ui/react';
-import { useModalStore } from '../../hooks/useModalStore';
+import { useModalStore } from '../app-layout/hooks/useModalStore';
 import { Hexagram } from '../hexagram/Hexagram';
 import { Image } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
@@ -29,6 +29,7 @@ export const IChingCardModal = React.memo(
       >
         <ModalOverlay />
         <AnimatedContent
+          maxWidth={400}
           boxShadow="none"
           bgColor="transparent"
           padding={4}
@@ -38,8 +39,9 @@ export const IChingCardModal = React.memo(
           whileTap={{ scale: 0.9 }}
         >
           <Image
+            cursor="pointer"
             width="full"
-            borderRadius="md"
+            borderRadius={{ base: 'md', md: 'lg' }}
             onClick={onClose}
             src={hexagram.cardImage}
           />

@@ -1,8 +1,8 @@
 import { Flex, Text } from '@chakra-ui/react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useGameboardStore } from '../../hooks/useGameboardStore';
-import { useModalStore } from '../../hooks/useModalStore';
+import { useGameboardStore } from './hooks/useGameboardStore';
+import { useModalStore } from '../app-layout/hooks/useModalStore';
 import { ActionButton } from './ActionButton';
 import { IChingCard } from './IChingCard';
 import { IChingCardModal } from './IChingCardModal';
@@ -37,16 +37,25 @@ export const DrawResult = React.memo(() => {
     <Flex
       ref={containerRef}
       p={4}
-      width={300}
+      width={{ base: 300, md: 350 }}
       flexDirection="column"
       alignItems="center"
     >
       <IChingCardModal hexagram={drawedHexagram} finalFocusRef={containerRef} />
       <IChingCard onClick={openModal} hexagram={drawedHexagram} />
-      <Text mt={2} fontWeight="bold" fontSize="3xl" color="orange.300">
-        {drawedHexagram.fullname}
+      <Text
+        mt={{ base: 2, md: 4 }}
+        fontWeight="bold"
+        fontSize={{ base: '3xl', md: '4xl' }}
+        color="orange.300"
+      >
+        {drawedHexagram.symbol} {drawedHexagram.fullname}
       </Text>
-      <ActionButton mt={2} width="full" onClick={goToExplainPage}>
+      <ActionButton
+        mt={{ base: 2, md: 4 }}
+        width="full"
+        onClick={goToExplainPage}
+      >
         解卦
       </ActionButton>
       <ActionButton onClick={retry} mt={4} mb={14} width="full">

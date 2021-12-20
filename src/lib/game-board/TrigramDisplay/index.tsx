@@ -1,6 +1,6 @@
 import { Flex } from '@chakra-ui/react';
 import React from 'react';
-import { useGameboardStore } from '../../../hooks/useGameboardStore';
+import { useGameboardStore } from '../hooks/useGameboardStore';
 import { TrigramItem } from './TrigramItem';
 
 export const TrigramDisplay = React.memo(() => {

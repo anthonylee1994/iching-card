@@ -5,12 +5,13 @@ import { GiEgyptianBird } from 'react-icons/gi';
 export const AppBar = React.memo(() => {
   return (
     <Flex
+      userSelect="none"
       justifyContent="center"
       alignItems="center"
-      height="64px"
+      height={{ base: '64px', md: '80px' }}
       position="fixed"
       width="full"
-      fontSize="3xl"
+      fontSize={{ base: '3xl', md: '4xl' }}
       backdropFilter="blur(4px)"
       bgColor="rgb(26 32 44 / 60%)"
     >

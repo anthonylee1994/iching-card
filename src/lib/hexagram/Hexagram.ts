@@ -5,7 +5,12 @@ import {
   TrigramIndex,
   TrigramNumber,
 } from '../trigram/type';
-import { HexagramMessageMap, HexagramNumber, HexagramType } from './type';
+import {
+  HexagramMessageMap,
+  HexagramNumber,
+  HexagramSymbol,
+  HexagramType,
+} from './type';
 import card1 from '../../assets/iching-cards/1.jpg';
 import card2 from '../../assets/iching-cards/2.jpg';
 import card3 from '../../assets/iching-cards/3.jpg';
@@ -86,6 +91,73 @@ export class Hexagram {
     ['否', '萃', '晉', '豫', '觀', '比', '剝', '坤'],
   ];
 
+  public static symbols: HexagramSymbol[] = [
+    '䷀',
+    '䷁',
+    '䷂',
+    '䷃',
+    '䷄',
+    '䷅',
+    '䷆',
+    '䷇',
+    '䷈',
+    '䷉',
+    '䷊',
+    '䷋',
+    '䷌',
+    '䷍',
+    '䷎',
+    '䷏',
+    '䷐',
+    '䷑',
+    '䷒',
+    '䷓',
+    '䷔',
+    '䷕',
+    '䷖',
+    '䷗',
+    '䷘',
+    '䷙',
+    '䷚',
+    '䷛',
+    '䷜',
+    '䷝',
+    '䷞',
+    '䷟',
+    '䷠',
+    '䷡',
+    '䷢',
+    '䷣',
+    '䷤',
+    '䷥',
+    '䷦',
+    '䷧',
+    '䷨',
+    '䷩',
+    '䷪',
+    '䷫',
+    '䷬',
+    '䷭',
+    '䷮',
+    '䷯',
+    '䷰',
+    '䷱',
+    '䷲',
+    '䷳',
+    '䷴',
+    '䷵',
+    '䷶',
+    '䷷',
+    '䷸',
+    '䷹',
+    '䷺',
+    '䷻',
+    '䷼',
+    '䷽',
+    '䷾',
+    '䷿',
+  ];
+
   public static images: string[][] = [
     [card1, card43, card14, card34, card9, card5, card26, card11],
     [card10, card58, card38, card54, card61, card60, card41, card19],
@@ -107,6 +179,10 @@ export class Hexagram {
     [33, 31, 56, 62, 53, 39, 52, 15],
     [12, 45, 35, 16, 20, 8, 23, 2],
   ];
+
+  public get symbol(): HexagramSymbol {
+    return Hexagram.symbols[this.code - 1];
+  }
 
   public get message(): HexagramMessageMap | null {
     return hexagramMessagesMap[this.value];

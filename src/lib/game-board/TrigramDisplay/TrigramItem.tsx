@@ -13,6 +13,7 @@ const AnimatedFlex = motion(Flex);
 export const TrigramItem = React.memo(({ trigram, label }: Props) => {
   return (
     <AnimatedFlex
+      userSelect="none"
       flexDirection="column"
       alignItems="center"
       justifyContent="center"

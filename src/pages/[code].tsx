@@ -5,12 +5,9 @@ import { Hexagram } from '../lib/hexagram/Hexagram';
 import { HexagramMessageMap, HexagramType } from '../lib/hexagram/type';
 import { IChingCard } from '../lib/game-board/IChingCard';
 import { IChingCardModal } from '../lib/game-board/IChingCardModal';
-import { useModalStore } from '../hooks/useModalStore';
+import { useModalStore } from '../lib/app-layout/hooks/useModalStore';
 import { ExplainCard } from '../lib/explain/ExplainCard';
-import { motion } from 'framer-motion';
 import { FloatingBackButton } from '../lib/app-layout/FloatingBackButton';
-
-const AnimatedFlex = motion(Flex);
 
 export const CodeExplainationPage = React.memo(() => {
   const { code } = useParams<'code'>();
@@ -34,24 +31,30 @@ export const CodeExplainationPage = React.memo(() => {
       flexDirection="column"
       justifyContent="center"
       alignItems="center"
-      pt={20}
+      pt={{ base: 20, md: 24 }}
       pl={2}
       pr={2}
-      pb={20}
+      pb={{ base: 20, md: '100px' }}
     >
       <IChingCard hexagram={hexagram} onClick={openModal} />
       <IChingCardModal hexagram={hexagram} finalFocusRef={containerRef} />
 
-      <Flex width="full" flexDirection="column" mt={2}>
+      <Flex
+        width="full"
+        maxWidth={800}
+        flexDirection="column"
+        mt={{ base: 2, md: 4 }}
+      >
         <Flex
           width="full"
           textAlign="center"
-          fontSize="4xl"
+          fontSize={{ base: '3xl', md: '4xl' }}
           fontWeight="bold"
           color="orange.300"
           justifyContent="center"
+          mb={{ base: 2, md: 4 }}
         >
-          {hexagram.fullname}
+          {hexagram.symbol} {hexagram.fullname}
         </Flex>
 
         {(Object.keys(hexagramMessage) as (keyof HexagramMessageMap)[]).map(

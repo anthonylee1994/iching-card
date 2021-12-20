@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { AppBar } from '../lib/app-layout/AppBar';
 import { Home } from './home';
-import { Records } from './records';
+import { Bookmarks } from './bookmarks';
 import { CodeExplainationPage } from './[code]';
 
 export const Index = React.memo(() => {
@@ -11,7 +11,7 @@ export const Index = React.memo(() => {
       <AppBar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="records" element={<Records />} />
+        <Route path="bookmarks" element={<Bookmarks />} />
         <Route path=":code" element={<CodeExplainationPage />} />
       </Routes>
     </React.Fragment>

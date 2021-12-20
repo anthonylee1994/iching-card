@@ -15,7 +15,7 @@ export const LoadingBird = React.memo(() => {
         duration: 0.3,
       }}
     >
-      <Icon fontSize="6xl" as={GiEgyptianBird} />
+      <Icon fontSize={{ base: '6xl', md: '8xl' }} as={GiEgyptianBird} />
     </AnimatedFlex>
   );
 });
