@@ -43,7 +43,9 @@ export const BookmarkCard = React.memo(({ bookmark, index }: Props) => {
         <Title hexagram={hexagram} />
         <CardContent>
           <CardPanel title="鳩卜事項">{bookmark.title}</CardPanel>
-          <CardPanel title="註解">{bookmark.description}</CardPanel>
+          {bookmark.description && (
+            <CardPanel title="註解">{bookmark.description}</CardPanel>
+          )}
         </CardContent>
         <CardFooter>
           <ExplainButton onClick={gotoExplainPage} />

@@ -20,14 +20,22 @@ export const TrigramItem = React.memo(({ trigram, label }: Props) => {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       lineHeight={0.8}
+      p={1}
     >
-      <Text fontSize="sm" mb={1}>
+      <Text fontSize="sm" mb={{ base: 2, md: 0 }}>
         {label}
       </Text>
-      <Text position="relative" top={-3} color="orange.300" fontSize="7xl">
+      <Text
+        position="relative"
+        color="orange.300"
+        fontSize={{ base: '5xl', md: '7xl' }}
+        mb={2}
+      >
         {trigram.symbol}
       </Text>
-      <Text color="orange.300">{trigram.fullname}</Text>
+      <Text fontSize={{ base: 'sm', md: 'md' }} color="orange.300">
+        {trigram.fullname}
+      </Text>
     </AnimatedFlex>
   );
 });
