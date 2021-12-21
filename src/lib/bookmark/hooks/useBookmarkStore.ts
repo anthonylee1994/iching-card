@@ -14,13 +14,32 @@ interface IState {
   bookmarks: Bookmark[];
   addBookmark: (bookmark: Omit<Bookmark, 'createdAt' | 'updatedAt'>) => void;
   removeBookmark: (index: number) => void;
+  removeCurrentBookmark: () => void;
   editBookmark: (index: number, bookmark: Partial<Bookmark>) => void;
+  deleteIndex: number;
+  setDeleteIndex: (index: number) => void;
 }
 
 export const useBookmarkStore = create<IState>(
   persist(
     (set, get) => ({
       bookmarks: [],
+      deleteIndex: -1,
+      setDeleteIndex: (index: number) =>
+        set((state) => ({ ...state, deleteIndex: index })),
+      removeCurrentBookmark: () => {
+        const { deleteIndex } = get();
+        if (deleteIndex !== -1) {
+          set((state) => ({
+            ...state,
+            deleteIndex: -1,
+            bookmarks: [
+              ...state.bookmarks.slice(0, deleteIndex),
+              ...state.bookmarks.slice(deleteIndex + 1),
+            ],
+          }));
+        }
+      },
       addBookmark: (bookmark) => {
         const date = new Date();
 

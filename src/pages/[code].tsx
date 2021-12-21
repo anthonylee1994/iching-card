@@ -20,6 +20,12 @@ export const CodeExplainationPage = React.memo(() => {
     (state) => () => state.onOpen('IChingCardModal'),
   );
 
+  React.useEffect(() => {
+    window.scrollTo({
+      top: 0,
+    });
+  }, []);
+
   if (!hexagramMessage) {
     return null;
   }
@@ -52,6 +58,7 @@ export const CodeExplainationPage = React.memo(() => {
           fontWeight="bold"
           color="orange.300"
           justifyContent="center"
+          mt={1}
           mb={{ base: 2, md: 4 }}
         >
           {hexagram.symbol} {hexagram.fullname}
@@ -65,7 +72,7 @@ export const CodeExplainationPage = React.memo(() => {
           ),
         )}
       </Flex>
-      <FloatingBackButton onClick={() => navigate('/')} />
+      <FloatingBackButton onClick={() => navigate(-1)} />
     </Flex>
   );
 });
