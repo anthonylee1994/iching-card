@@ -10,9 +10,8 @@ export class Shuffler<T> {
   async shuffle(): Promise<T[]> {
     await this.randomer.initialize();
 
-    return this.list.sort(() => {
-      const rand = this.randomer.getNext();
-      return rand > 127 ? 1 : -1;
-    });
+    const rand = Math.floor((this.randomer.getNext() / 256) * 8);
+
+    return this.list.slice(rand).concat(this.list.slice(0, rand));
   }
 }

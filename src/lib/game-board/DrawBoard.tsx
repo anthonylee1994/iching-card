@@ -4,6 +4,7 @@ import { YinYang } from './YinYang';
 import { CenterLogo } from './CenterLogo';
 import { motion } from 'framer-motion';
 import { useGameboardStore } from './hooks/useGameboardStore';
+import { Trigram } from '../trigram/Trigram';
 
 const AnimatedGrid = motion(Grid);
 
@@ -11,7 +12,9 @@ export const DrawBoard = React.memo(() => {
   const currentTrigrams = useGameboardStore((state) =>
     state.getCurrentTrigrams(),
   );
-  const onDraw = useGameboardStore((state) => state.onDraw);
+  const onDraw = useGameboardStore(
+    (state) => (x: Trigram) => () => state.onDraw(x),
+  );
 
   return (
     <AnimatedGrid
@@ -24,13 +27,17 @@ export const DrawBoard = React.memo(() => {
         duration: 0.8,
       }}
     >
-      {currentTrigrams.slice(0, 4).map((trigram, index) => (
-        <YinYang key={index} onClick={() => onDraw(trigram)} />
-      ))}
+      <YinYang onClick={onDraw(currentTrigrams[4])} />
+      <YinYang onClick={onDraw(currentTrigrams[5])} />
+      <YinYang onClick={onDraw(currentTrigrams[6])} />
+
+      <YinYang onClick={onDraw(currentTrigrams[3])} />
       <CenterLogo />
-      {currentTrigrams.slice(4, 8).map((trigram, index) => (
-        <YinYang key={index} onClick={() => onDraw(trigram)} />
-      ))}
+      <YinYang onClick={onDraw(currentTrigrams[7])} />
+
+      <YinYang onClick={onDraw(currentTrigrams[2])} />
+      <YinYang onClick={onDraw(currentTrigrams[1])} />
+      <YinYang onClick={onDraw(currentTrigrams[0])} />
     </AnimatedGrid>
   );
 });
