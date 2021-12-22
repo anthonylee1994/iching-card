@@ -14,13 +14,16 @@ export const ExplainButton = React.memo(({ onClick }: Props) => {
   return (
     <AnimatedButton
       size={size}
-      onClick={onClick}
       color="orange.900"
       bgColor="orange.300"
       _focus={{ bgColor: 'orange.300' }}
       _active={{ bgColor: 'orange.300' }}
       _hover={{ bgColor: 'orange.300' }}
       whileTap={{ scale: 0.8 }}
+      onClick={() => {
+        window?.navigator?.vibrate?.(10);
+        onClick();
+      }}
     >
       解卦
     </AnimatedButton>

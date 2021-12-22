@@ -1,13 +1,10 @@
 import React from 'react';
-import { Flex, Icon } from '@chakra-ui/react';
-import { motion } from 'framer-motion';
 import { MdHistory, MdSave } from 'react-icons/md';
 import { useNavigate } from 'react-router-dom';
 import { useGameboardStore } from '../game-board/hooks/useGameboardStore';
 import { SaveBookmarkModal } from '../bookmark/SaveBookmarkModal';
 import { useModalStore } from './hooks/useModalStore';
-
-const AnimatedFlex = motion(Flex);
+import { BottomButtonBase } from './BottomButtonBase';
 
 export const BookmarksButton = React.memo(() => {
   const ref = React.useRef(null);
@@ -21,24 +18,18 @@ export const BookmarksButton = React.memo(() => {
 
   return (
     <React.Fragment>
-      <AnimatedFlex
-        ref={ref}
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        cursor="pointer"
-        whileTap={{ scale: 0.9, opacity: 0.5 }}
-        position="fixed"
+      <BottomButtonBase
         bottom={{ base: 6, md: 8 }}
         left={{ base: 6, md: 8 }}
-        onClick={() =>
-          hasResult && !isCardSaved ? onOpenSaveModal() : navigate('/bookmarks')
-        }
-      >
-        <Icon
-          fontSize={{ base: '4xl', md: '5xl' }}
-          as={hasResult && !isCardSaved ? MdSave : MdHistory}
-        />
-      </AnimatedFlex>
+        icon={hasResult && !isCardSaved ? MdSave : MdHistory}
+        onClick={() => {
+          window?.navigator?.vibrate?.(10);
+
+          hasResult && !isCardSaved
+            ? onOpenSaveModal()
+            : navigate('/bookmarks');
+        }}
+      />
       <SaveBookmarkModal finalFocusRef={ref} />
     </React.Fragment>
   );

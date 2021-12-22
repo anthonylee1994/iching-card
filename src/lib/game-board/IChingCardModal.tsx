@@ -15,9 +15,10 @@ const AnimatedContent = motion(ModalContent);
 export const IChingCardModal = React.memo(
   ({ finalFocusRef, hexagram }: Props) => {
     const isOpen = useModalStore((state) => state.isOpen('IChingCardModal'));
-    const onClose = useModalStore(
-      (state) => () => state.onClose('IChingCardModal'),
-    );
+    const onClose = useModalStore((state) => () => {
+      window?.navigator?.vibrate?.(10);
+      state.onClose('IChingCardModal');
+    });
 
     return (
       <Modal

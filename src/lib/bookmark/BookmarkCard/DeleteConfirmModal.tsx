@@ -21,9 +21,10 @@ export const DeleteConfirmModal = React.memo(() => {
     state.isOpen('DeleteBookmarkConfirmModal'),
   );
 
-  const onClose = useModalStore(
-    (state) => () => state.onClose('DeleteBookmarkConfirmModal'),
-  );
+  const onClose = useModalStore((state) => () => {
+    window?.navigator?.vibrate?.(10);
+    state.onClose('DeleteBookmarkConfirmModal');
+  });
 
   const removeCurrentBookmark = useBookmarkStore(
     (state) => state.removeCurrentBookmark,

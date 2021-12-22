@@ -86,6 +86,36 @@ export class Trigram {
     }
   }
 
+  public vibrate() {
+    const YIN = [50, 250];
+    const YANG = [250, 50];
+
+    if (!window.navigator?.vibrate) {
+      return false;
+    }
+
+    switch (this.value) {
+      case '乾':
+        return window.navigator.vibrate([YANG, YANG, YANG].flat());
+      case '坎':
+        return window.navigator.vibrate([YIN, YANG, YIN].flat());
+      case '艮':
+        return window.navigator.vibrate([YANG, YIN, YIN].flat());
+      case '震':
+        return window.navigator.vibrate([YIN, YIN, YANG].flat());
+      case '巽':
+        return window.navigator.vibrate([YANG, YANG, YIN].flat());
+      case '離':
+        return window.navigator.vibrate([YANG, YIN, YANG].flat());
+      case '坤':
+        return window.navigator.vibrate([YIN, YIN, YIN].flat());
+      case '兌':
+        return window.navigator.vibrate([YIN, YANG, YANG].flat());
+      default:
+        return false;
+    }
+  }
+
   public toString(): TrigramType {
     return this.value;
   }

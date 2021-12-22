@@ -20,7 +20,10 @@ export const DeleteButton = React.memo(({ onClick }: Props) => {
       _active={{ bgColor: 'red.500' }}
       _hover={{ bgColor: 'red.500' }}
       whileTap={{ scale: 0.8 }}
-      onClick={onClick}
+      onClick={() => {
+        window?.navigator?.vibrate?.([10, 100, 10]);
+        onClick();
+      }}
     >
       刪除
     </AnimatedButton>

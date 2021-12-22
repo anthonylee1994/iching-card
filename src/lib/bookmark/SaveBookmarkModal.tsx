@@ -26,9 +26,10 @@ interface Props {
 export const SaveBookmarkModal = React.memo(({ finalFocusRef }: Props) => {
   const isOpen = useModalStore((state) => state.isOpen('SaveBookmarkModal'));
   const modalSize = useBreakpointValue({ base: 'full', md: 'md' });
-  const onClose = useModalStore(
-    (state) => () => state.onClose('SaveBookmarkModal'),
-  );
+  const onClose = useModalStore((state) => () => {
+    window?.navigator?.vibrate?.(10);
+    state.onClose('SaveBookmarkModal');
+  });
 
   const setCardSaved = useGameboardStore((state) => state.setCardSaved);
 

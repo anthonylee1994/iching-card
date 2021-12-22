@@ -15,7 +15,10 @@ export const FloatingBackButton = React.memo(({ onClick }: Props) => {
       initial={{ scale: 0 }}
       animate={{ scale: 1 }}
       cursor="pointer"
-      onClick={onClick}
+      onClick={() => {
+        window?.navigator?.vibrate?.(10);
+        onClick();
+      }}
       borderRadius="100%"
       bgColor="orange.400"
       p={{ base: 2, md: 4 }}

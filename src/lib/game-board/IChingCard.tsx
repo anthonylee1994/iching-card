@@ -16,7 +16,12 @@ export const IChingCard = React.memo(
   ({ small, hexagram, noAnimate, onClick }: Props) => {
     return (
       <AnimatedFlex
-        onClick={onClick}
+        onClick={() => {
+          if (typeof onClick === 'function') {
+            window?.navigator?.vibrate?.(10);
+            onClick();
+          }
+        }}
         cursor={onClick ? 'pointer' : undefined}
         initial={
           noAnimate

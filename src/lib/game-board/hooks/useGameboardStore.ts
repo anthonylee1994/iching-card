@@ -67,6 +67,8 @@ export const useGameboardStore = create<IState>((set, get) => ({
     const { selectedFirstTrigram, selectFirstTrigram, selectLastTrigram } =
       get();
 
+    trigram.vibrate();
+
     if (selectedFirstTrigram) {
       selectLastTrigram(trigram);
     } else {
