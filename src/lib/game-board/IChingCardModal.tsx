@@ -29,7 +29,8 @@ export const IChingCardModal = React.memo(
       >
         <ModalOverlay />
         <AnimatedContent
-          maxWidth={400}
+          maxWidth={350}
+          justifyContent="center"
           boxShadow="none"
           bgColor="transparent"
           padding={4}

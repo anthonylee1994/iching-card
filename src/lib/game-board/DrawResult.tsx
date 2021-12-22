@@ -44,7 +44,7 @@ export const DrawResult = React.memo(() => {
       <IChingCardModal hexagram={drawedHexagram} finalFocusRef={containerRef} />
       <IChingCard onClick={openModal} hexagram={drawedHexagram} />
       <Text
-        mt={{ base: 2, md: 4 }}
+        mt={{ base: 3, md: 4 }}
         fontWeight="bold"
         fontSize={{ base: '3xl', md: '4xl' }}
         color="orange.300"
@@ -52,7 +52,7 @@ export const DrawResult = React.memo(() => {
         {drawedHexagram.symbol} {drawedHexagram.fullname}
       </Text>
       <ActionButton
-        mt={{ base: 2, md: 4 }}
+        mt={{ base: 3, md: 4 }}
         width="full"
         onClick={goToExplainPage}
       >

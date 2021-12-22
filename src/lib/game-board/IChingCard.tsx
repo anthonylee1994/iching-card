@@ -28,7 +28,7 @@ export const IChingCard = React.memo(
       >
         <Image
           src={hexagram.cardImage}
-          height={small ? { base: 200, md: 300 } : { base: 300, md: 400 }}
+          height={small ? { base: 200, md: 300 } : { base: 200, md: 300 }}
           borderRadius="md"
         />
       </AnimatedFlex>

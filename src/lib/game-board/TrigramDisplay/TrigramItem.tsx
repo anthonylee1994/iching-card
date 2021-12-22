@@ -22,18 +22,18 @@ export const TrigramItem = React.memo(({ trigram, label }: Props) => {
       lineHeight={0.8}
       p={1}
     >
-      <Text fontSize="sm" mb={{ base: 2, md: 0 }}>
+      <Text fontSize={{ base: 'xs', md: 'sm' }} mb={{ base: 2, md: 0 }}>
         {label}
       </Text>
       <Text
         position="relative"
         color="orange.300"
-        fontSize={{ base: '5xl', md: '7xl' }}
+        fontSize={{ base: '3xl', md: '7xl' }}
         mb={2}
       >
         {trigram.symbol}
       </Text>
-      <Text fontSize={{ base: 'sm', md: 'md' }} color="orange.300">
+      <Text fontSize={{ base: 'xs', md: 'md' }} color="orange.300">
         {trigram.fullname}
       </Text>
     </AnimatedFlex>
