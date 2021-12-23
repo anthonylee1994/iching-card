@@ -180,6 +180,18 @@ export class Hexagram {
     [12, 45, 35, 16, 20, 8, 23, 2],
   ];
 
+  public static getSequencedHexagrams = (): Hexagram[] => {
+    const flattenCodes = this.codes.flat();
+    const flattenDictionary = this.dictionary.flat();
+    return flattenDictionary
+      .sort(
+        (a, b) =>
+          flattenCodes[flattenDictionary.indexOf(a)] -
+          flattenCodes[flattenDictionary.indexOf(b)],
+      )
+      .map((code) => this.fromValue(code));
+  };
+
   public get symbol(): HexagramSymbol {
     return Hexagram.symbols[this.code - 1];
   }
