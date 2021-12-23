@@ -19,7 +19,14 @@ export const List = React.memo(() => {
       pr={4}
       pb={{ base: 20, md: '100px' }}
     >
-      <Grid templateColumns="repeat(3, 1fr)" gap={2}>
+      <Grid
+        templateColumns={{
+          base: 'repeat(3, 1fr)',
+          lg: 'repeat(6, 1fr)',
+          xl: 'repeat(8, 1fr)',
+        }}
+        gap={2}
+      >
         {Hexagram.getSequencedHexagrams().map((hexagram, index) => (
           <IChingCard
             key={index}
