@@ -1,22 +1,22 @@
-import { Flex, Text } from '@chakra-ui/react';
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useGameboardStore } from './hooks/useGameboardStore';
-import { useModalStore } from '../app-layout/hooks/useModalStore';
-import { ActionButton } from './ActionButton';
-import { IChingCard } from './IChingCard';
-import { IChingCardModal } from './IChingCardModal';
+import { Flex, Text } from "@chakra-ui/react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { useGameboardStore } from "./hooks/useGameboardStore";
+import { useModalStore } from "../app-layout/hooks/useModalStore";
+import { ActionButton } from "./ActionButton";
+import { IChingCard } from "./IChingCard";
+import { IChingCardModal } from "./IChingCardModal";
 
 export const DrawResult = React.memo(() => {
   const containerRef = React.useRef(null);
   const navigate = useNavigate();
 
   const drawedHexagram = useGameboardStore((state) =>
-    state.getDrawedHexagram(),
+    state.getDrawedHexagram()
   );
 
   const openModal = useModalStore(
-    (state) => () => state.onOpen('IChingCardModal'),
+    (state) => () => state.onOpen("IChingCardModal")
   );
 
   const retry = useGameboardStore((state) => state.retry);
@@ -46,7 +46,7 @@ export const DrawResult = React.memo(() => {
       <Text
         mt={{ base: 3, md: 4 }}
         fontWeight="bold"
-        fontSize={{ base: '3xl', md: '4xl' }}
+        fontSize={{ base: "3xl", md: "4xl" }}
         color="orange.300"
       >
         {drawedHexagram.symbol} {drawedHexagram.fullname}
@@ -59,7 +59,7 @@ export const DrawResult = React.memo(() => {
         解卦
       </ActionButton>
       <ActionButton onClick={retry} mt={4} mb={14} width="full">
-        重新鳩卜
+        重新易卜
       </ActionButton>
     </Flex>
   );

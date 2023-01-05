@@ -12,23 +12,23 @@ import {
   Textarea,
   Text,
   useBreakpointValue,
-} from '@chakra-ui/react';
-import React from 'react';
-import { useModalStore } from '../app-layout/hooks/useModalStore';
-import { useGameboardStore } from '../game-board/hooks/useGameboardStore';
-import { IChingCard } from '../game-board/IChingCard';
-import { useBookmarkStore } from './hooks/useBookmarkStore';
+} from "@chakra-ui/react";
+import React from "react";
+import { useModalStore } from "../app-layout/hooks/useModalStore";
+import { useGameboardStore } from "../game-board/hooks/useGameboardStore";
+import { IChingCard } from "../game-board/IChingCard";
+import { useBookmarkStore } from "./hooks/useBookmarkStore";
 
 interface Props {
   finalFocusRef: React.RefObject<HTMLDivElement>;
 }
 
 export const SaveBookmarkModal = React.memo(({ finalFocusRef }: Props) => {
-  const isOpen = useModalStore((state) => state.isOpen('SaveBookmarkModal'));
-  const modalSize = useBreakpointValue({ base: 'full', md: 'md' });
+  const isOpen = useModalStore((state) => state.isOpen("SaveBookmarkModal"));
+  const modalSize = useBreakpointValue({ base: "full", md: "md" });
   const onClose = useModalStore((state) => () => {
     window?.navigator?.vibrate?.(10);
-    state.onClose('SaveBookmarkModal');
+    state.onClose("SaveBookmarkModal");
   });
 
   const setCardSaved = useGameboardStore((state) => state.setCardSaved);
@@ -36,11 +36,11 @@ export const SaveBookmarkModal = React.memo(({ finalFocusRef }: Props) => {
   const addBookmark = useBookmarkStore((state) => state.addBookmark);
 
   const drawedHexagram = useGameboardStore((state) =>
-    state.getDrawedHexagram(),
+    state.getDrawedHexagram()
   );
 
-  const [title, setTitle] = React.useState('');
-  const [description, setDescription] = React.useState('');
+  const [title, setTitle] = React.useState("");
+  const [description, setDescription] = React.useState("");
 
   const onSave = () => {
     if (!drawedHexagram) {
@@ -64,9 +64,9 @@ export const SaveBookmarkModal = React.memo(({ finalFocusRef }: Props) => {
       onClose={onClose}
     >
       <ModalOverlay />
-      <ModalContent borderRadius={{ base: 0, md: 'md' }} alignItems="center">
-        <ModalCloseButton _focus={{ borderColor: 'transparent' }} />
-        <ModalHeader>儲存鳩卜結果</ModalHeader>
+      <ModalContent borderRadius={{ base: 0, md: "md" }} alignItems="center">
+        <ModalCloseButton _focus={{ borderColor: "transparent" }} />
+        <ModalHeader>儲存易卜結果</ModalHeader>
         <ModalBody
           d="flex"
           flexDirection="column"
@@ -78,19 +78,19 @@ export const SaveBookmarkModal = React.memo(({ finalFocusRef }: Props) => {
           <Text
             mt={{ base: 2, md: 4 }}
             fontWeight="bold"
-            fontSize={{ base: '3xl', md: '4xl' }}
+            fontSize={{ base: "3xl", md: "4xl" }}
             color="orange.300"
           >
             {drawedHexagram.symbol} {drawedHexagram.fullname}
           </Text>
 
           <FormControl isRequired>
-            <FormLabel>鳩卜事項</FormLabel>
+            <FormLabel>易卜事項</FormLabel>
             <Input
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               focusBorderColor="orange.300"
-              _placeholder={{ color: 'gray.400' }}
+              _placeholder={{ color: "gray.400" }}
               width="full"
             />
           </FormControl>
@@ -100,7 +100,7 @@ export const SaveBookmarkModal = React.memo(({ finalFocusRef }: Props) => {
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               focusBorderColor="orange.300"
-              _placeholder={{ color: 'gray.300' }}
+              _placeholder={{ color: "gray.300" }}
               width="full"
               placeholder="無事不佔，不動不佔，不誠不占"
             />
@@ -110,9 +110,9 @@ export const SaveBookmarkModal = React.memo(({ finalFocusRef }: Props) => {
             m={4}
             disabled={!title}
             onClick={onSave}
-            _focus={{ bgColor: 'orange.300' }}
-            _active={{ bgColor: 'orange.400' }}
-            _hover={{ bgColor: 'orange.300' }}
+            _focus={{ bgColor: "orange.300" }}
+            _active={{ bgColor: "orange.400" }}
+            _hover={{ bgColor: "orange.300" }}
             bgColor="orange.300"
             color="gray.700"
             width="full"
