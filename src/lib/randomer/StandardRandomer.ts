@@ -1,20 +1,13 @@
 import { IRandomer } from './IRandomer';
 
-export class QuantumRandomer implements IRandomer {
+export class StandardRandomer implements IRandomer {
   private currentIndex = 0;
   private values: number[] = [];
-  private static API_URL = 'https://qrng.anu.edu.au/API/jsonI.php';
 
   constructor(private readonly length: number) {}
 
   async initialize(): Promise<void> {
-    const response = await fetch(
-      `${QuantumRandomer.API_URL}?length=${
-        this.length
-      }&type=uint8&rand=${Math.random()}`,
-    );
-    const data = await response.json();
-    this.values = data.data as number[];
+    this.values = Array.from({ length: this.length }, (_, i) => Math.random() * 256);
     this.currentIndex = 0;
   }
 

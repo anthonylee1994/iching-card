@@ -1,4 +1,4 @@
-import { QuantumRandomer } from '../randomer/QuantumRandomer';
+import { StandardRandomer } from '../randomer/StandardRandomer';
 import { Shuffler } from '../shuffler/Shuffler';
 import {
   TrigramElement,
@@ -25,7 +25,7 @@ export class Trigram {
   }
 
   public static async getShuffledList(): Promise<Trigram[]> {
-    return new Shuffler(Trigram.getList(), QuantumRandomer).shuffle();
+    return new Shuffler(Trigram.getList(), StandardRandomer).shuffle();
   }
 
   public static getMap(): Record<TrigramType, Trigram> {
