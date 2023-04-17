@@ -2,17 +2,17 @@ import React from 'react';
 import { Flex } from '@chakra-ui/react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Hexagram } from '../lib/hexagram/Hexagram';
-import { HexagramMessageMap, HexagramType } from '../lib/hexagram/type';
+import {HexagramMessageMap, HexagramNumber, HexagramType} from '../lib/hexagram/type';
 import { IChingCard } from '../lib/game-board/IChingCard';
 import { IChingCardModal } from '../lib/game-board/IChingCardModal';
 import { useModalStore } from '../lib/app-layout/hooks/useModalStore';
 import { ExplainCard } from '../lib/explain/ExplainCard';
 import { FloatingBackButton } from '../lib/app-layout/FloatingBackButton';
 
-export const CodeExplainationPage = React.memo(() => {
+export const CodeExplanationPage = React.memo(() => {
   const { code } = useParams<'code'>();
   const navigate = useNavigate();
-  const hexagram = Hexagram.fromValue(code as HexagramType);
+  const hexagram = isNaN(Number(code)) ? Hexagram.fromValue( code as HexagramType) : Hexagram.fromCode(Number(code) as HexagramNumber);
   const containerRef = React.useRef(null);
   const hexagramMessage = hexagram.message;
 
